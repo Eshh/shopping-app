@@ -6,5 +6,6 @@
   <app-recipe-item
     *ngFor="let recipe of recipes; let i = index"
     [recipe]="recipe"
+    (onRecipeClick)="recipeClicked(recipe)"
   ></app-recipe-item>
 </div>
