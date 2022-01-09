@@ -8,8 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   tabFlag: string = 'recipe';
   title = 'shopping-app';
-
-  switchTab(tab: string) {
-    this.tabFlag = tab;
-  }
 }
