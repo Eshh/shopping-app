@@ -11,8 +11,4 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  onTabClick(tab: string) {
-    this.changeTab.emit(tab);
-  }
 }

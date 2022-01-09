@@ -3,7 +3,7 @@ import { Ingredient } from '../shared/models/ingredients.model';
 
 @Injectable()
 export class ShoppingService {
-@Output() getIngredientsList = new EventEmitter<Ingredient[]>()
+  @Output() getIngredientsList = new EventEmitter<Ingredient[]>();
 
   private ingredients: Ingredient[] = [
     new Ingredient('Tomatoes', 10),
