@@ -1,42 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Ingredient } from '../shared/models/ingredients.model';
-import { Recipe } from '../shared/models/recipe.model';
+
+import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
-  selectedRecipe = new Subject<Recipe>();
 
-  recipes: Recipe[] = [
+  private recipes: Recipe[] = [
     new Recipe(
-      'Chicken Biryani',
-      'Biryani is a mixed rice dish',
-      'https://i0.wp.com/pixahive.com/wp-content/uploads/2020/10/Chicken-biryani-143360-pixahive.jpg?fit=1560%2C1040&ssl=1',
+      'Tasty Schnitzel',
+      'A super-tasty Schnitzel - just awesome!',
+      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
       [
-        new Ingredient('Rice', 5),
-        new Ingredient('Chicken', 10),
-        new Ingredient('Masala', 10),
-        new Ingredient('Veggies', 5),
-      ]
-    ),
-    new Recipe(
-      'Pizza',
-      'Pizza is a dish of Italian origin',
-      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
+        new Ingredient('Meat', 1),
+        new Ingredient('French Fries', 20)
+      ]),
+    new Recipe('Big Fat Burger',
+      'What else you need to say?',
+      'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
       [
-        new Ingredient('Bread', 2),
-        new Ingredient('Cheese', 4),
-        new Ingredient('Veggies', 5),
-        new Ingredient('Chicken', 5),
-      ]
-    ),
+        new Ingredient('Buns', 2),
+        new Ingredient('Meat', 1)
+      ])
   ];
 
-  getRecipeData() {
+  constructor(private slService: ShoppingListService) {}
+
+  getRecipes() {
     return this.recipes.slice();
   }
 
-  getRecipeById(id: number) {
-    return this.recipes[id];
+  getRecipe(index: number) {
+    return this.recipes[index];
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
   }
 }
