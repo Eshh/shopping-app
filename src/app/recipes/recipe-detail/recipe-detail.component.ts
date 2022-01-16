@@ -28,7 +28,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   sendToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingService.getIngredientsList.emit(ingredients);
+    this.shoppingService.getIngredientsList.next(ingredients);
   }
 
   onEditRecipe() {
