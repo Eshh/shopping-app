@@ -3,9 +3,17 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success"
-          [disabled]="recipeForm.invalid">Save</button> &nbsp;
-          <button type="button" class="btn btn-danger" (click)='onCancel()'>Cancel</button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="recipeForm.invalid"
+          >
+            Save
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
         </div>
       </div>
 
@@ -38,7 +46,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img [src]="imagePath.value"  class="img-responsive" />
+          <img [src]="imagePath.value" class="img-responsive" />
         </div>
       </div>
       <div class="row">
@@ -64,22 +72,46 @@
             [formGroupName]="i"
             style="margin-top: 10px"
           >
-            <div class="col-xs-8">
-              <input
-                type="text"
-                class="form-control"
-                [formControlName]="'name'"
-              />
+            <div *ngIf="i < 4; else testBlock">
+              <div class="col-xs-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  [formControlName]="'name'"
+                />
+              </div>
+              <div class="col-xs-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  [formControlName]="'amount'"
+                />
+              </div>
             </div>
+            <ng-template #testBlock>
+              <div class="col-xs-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  [formControlName]="'test1'"
+                />
+              </div>
+              <div class="col-xs-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  [formControlName]="'test2'"
+                />
+              </div>
+            </ng-template>
             <div class="col-xs-2">
-              <input
-                type="number"
-                class="form-control"
-                [formControlName]="'amount'"
-              />
-            </div>
-            <div class="col-xs-2">
-              <button class="btn btn-danger" type='button' (click)='deleteIngredient(i)'>X</button>
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="deleteIngredient(i)"
+              >
+                X
+              </button>
             </div>
           </div>
         </div>
