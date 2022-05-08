@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
@@ -6,10 +8,27 @@ import { DataStorageService } from '../shared/data-storage.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  constructor(private dataStorageService: DataStorageService) {}
+  private sub: Subscription;
+  public isLoggedIn: boolean = false;
+  constructor(
+    private dataStorageService: DataStorageService,
+    private authService: AuthService
+  ) {}
+  ngOnInit() {
+    this.sub = this.authService.user.subscribe((user: any) => {
+      this.isLoggedIn = !!user;
+    });
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
   onSaveData() {
     this.dataStorageService.storeRecipies();
+  }
+
+  onLogout() {
+    this.authService.signOut();
   }
 
   getRecipes() {
