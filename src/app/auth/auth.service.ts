@@ -84,7 +84,7 @@ export class AuthService {
     const user = new User(email, localId, idToken, expriyDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
-    localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('userData', JSON.stringify(user)); 
   }
 
   signIn(email: string, password: string) {
