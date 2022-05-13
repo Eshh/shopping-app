@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "angular-8115b"
+  },
+  "targets": {
+    "angular-8115b": {
+      "hosting": {
+        "shopping-app": [
+          "angular-8115b"
+        ]
+      }
+    }
   }
 }
